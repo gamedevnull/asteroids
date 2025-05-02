@@ -248,10 +248,8 @@ export class Enemy extends GameObject {
         this.isActive = false;
 
         this.animation = new Animation(256, 256, 0, 0, 16, 100);
-        if (!Enemy.spriteImage) {
-            Enemy.spriteImage = new Image();
-            Enemy.spriteImage.src = 'img/asteroid.png';
-        }
+
+        Enemy.initializeSprite();
 
         // debug
         // this.stateManager.addStateChangeCallback(EnemyStates.ACTIVE, () => {
@@ -263,6 +261,13 @@ export class Enemy extends GameObject {
         //     this.isActive = false;
         //     console.log("Enemy deactivated");
         // });
+    }
+
+    static initializeSprite(): void {
+        if (!Enemy.spriteImage) {
+            Enemy.spriteImage = new Image();
+            Enemy.spriteImage.src = 'img/asteroid.png';
+        }
     }
 
     update(deltaTime: number): void {
@@ -361,11 +366,14 @@ export class Explosion extends GameObject {
         super(GameObjectIds.EXPLOSION, new Position(x + xOffset, y + yOffset), new Size(256, 256));
         this.animation = new Animation(256, 256, 0, 0, 48, 5, 0);
 
+        Explosion.initializeSprite();
+    }
+
+    static initializeSprite(): void {
         if (!Explosion.spriteImage) {
             Explosion.spriteImage = new Image();
             Explosion.spriteImage.src = 'img/explosion.png';
         }
-
     }
 
     update(deltaTime: number): void {

@@ -390,6 +390,7 @@ export class Game {
         if (this.input.keys[' ']) {
             switch (currentState) {
                 case GameStates.TITLE:
+                    Explosion.initializeSprite();
                     this.gameStateManager.setState(GameStates.IN_GAME);
                     this.input.keys[' '] = false;
                     break;
