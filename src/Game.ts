@@ -3,6 +3,7 @@ import {Player} from './GameObjects.js';
 import {Enemy} from './GameObjects.js';
 import {Particle} from './GameObjects.js';
 import {Explosion} from './GameObjects.js';
+import {Bullet} from './GameObjects.js';
 import {StateManager} from './GameStates.js';
 import {SoundEffect} from './Commons.js';
 import {CollisionManager} from './Commons.js';
@@ -97,6 +98,8 @@ export class Game {
             this.toggleSound();
         });
 
+        Explosion.initializeSprite();
+        Bullet.initializeSprite();
     }
 
     toggleSound(): void {
@@ -390,7 +393,7 @@ export class Game {
         if (this.input.keys[' ']) {
             switch (currentState) {
                 case GameStates.TITLE:
-                    Explosion.initializeSprite();
+
                     this.gameStateManager.setState(GameStates.IN_GAME);
                     this.input.keys[' '] = false;
                     break;

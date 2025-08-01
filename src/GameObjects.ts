@@ -438,6 +438,10 @@ export class Bullet extends GameObject {
         this.viewport = viewport;
         this.animation = new Animation(32, 64, 0, 0, 16, 10);
 
+        Bullet.initializeSprite();
+    }
+
+    static initializeSprite(): void {
         if (!Bullet.spriteImage) {
             Bullet.spriteImage = new Image();
             Bullet.spriteImage.src = 'img/weaponfire.png';
